@@ -7,13 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BookStoreApp.Data\BookStoreApp.Data.csproj" />
-    <ProjectReference Include="..\BookStoreApp.Shared\BookStoreApp.Shared.csproj" />
+    <PackageReference Include="Mapster" Version="7.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstract\" />
-    <Folder Include="Concrete\" />
+    <ProjectReference Include="..\BookStoreApp.Data\BookStoreApp.Data.csproj" />
+    <ProjectReference Include="..\BookStoreApp.Shared\BookStoreApp.Shared.csproj" />
   </ItemGroup>
 
 </Project>

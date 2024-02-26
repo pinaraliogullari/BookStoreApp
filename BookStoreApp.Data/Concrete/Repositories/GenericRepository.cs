@@ -1,5 +1,6 @@
 ﻿using BookStoreApp.Data.Abstract;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,19 +25,18 @@ namespace BookStoreApp.Data.Concrete.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null, params Expression<Func<TEntity, object>>[] includeProperties)
+        public async Task<List<TEntity>> GetAllAsync(
+            Expression<Func<TEntity, bool>> options = null, Func<IQueryable<TEntity>,
+            IIncludableQueryable<TEntity, object>> include = null)
         {
             IQueryable<TEntity> query = _dbContext.Set<TEntity>();
-            if(includeProperties != null)
+            if (include != null)
             {
-                foreach(var includeProperty in includeProperties)
-                {
-                    query = query.Include(includeProperty);
-                }
+                query = include(query);
             }
-            if(predicate != null)
+            if (options != null)
             {
-               query= query.Where(predicate);
+                query = query.Where(options);
             }
             return await query.ToListAsync();
         }

@@ -5,25 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BookStoreApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 
 </head>
 <body>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#"> Book Store</a>
+            <a class="navbar-brand" href="/"> Book Store</a>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="/Genre/Add" class="nav-link">Genre</a>
+                    <a asp-area=""
+                    asp-controller="Genre"
+                    asp-action="Index"
+                    class="nav-link">Genre</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/Author/Add" class="nav-link">Author</a>
+                    <a asp-area=""
+                       asp-controller="Author"
+                       asp-action="Index"
+                       class="nav-link">Author</a>
                 </li>
                 <li class="nav-item active">
-                    <a href="/Publisher/Add" class="nav-link">Publisher</a>
+                    <a asp-area=""
+                       asp-controller="Publisher"
+                       asp-action="Index"
+                       class="nav-link">Publisher</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="/Book/Add" class="nav-link">Book</a>
+                    <a asp-area=""
+                       asp-controller="Book"
+                       asp-action="Index"
+                       class="nav-link">Book</a>
                 </li>
             </ul>
 

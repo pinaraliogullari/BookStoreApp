@@ -11,7 +11,7 @@ namespace BookStoreApp.Data.Concrete.Contexts
 {
     public class BookStoreAppContext : DbContext
     {
-        public BookStoreAppContext(DbContextOptions options) : base(options)
+        public BookStoreAppContext(DbContextOptions<BookStoreAppContext> options) : base(options)
         {
         }
 

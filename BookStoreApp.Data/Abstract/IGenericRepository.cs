@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Query;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -14,8 +15,9 @@ namespace BookStoreApp.Data.Abstract
         Task HardDeleteAsync(TEntity entity);
         Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate = null,
             params Expression<Func<TEntity, object>>[] includeProperties);
-        Task<List<TEntity>>GetAllAsync(Expression<Func<TEntity, bool>> predicate = null,
-            params Expression<Func<TEntity, object>>[] includeProperties);
+        Task<List<TEntity>>GetAllAsync(
+            Expression<Func<TEntity, bool>> options = null, Func<IQueryable<TEntity>,
+            IIncludableQueryable<TEntity, object>> include = null);
 
 
     }

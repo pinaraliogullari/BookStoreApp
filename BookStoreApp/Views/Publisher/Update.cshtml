@@ -1,0 +1,32 @@
+﻿@model EditPublisherViewModel
+
+<div class="container ">
+    <div class="row">
+        <div class="col-md-6">
+
+            <h3 class="display-6 mt-3">Update Publisher</h3>
+            <form
+                asp-area=""
+                asp-controller="Publisher"
+                asp-action="Update"
+                method="Post"
+            >
+             
+
+            <div class="form-group">
+                    <input type="hidden" asp-for="Id" />
+                    <input asp-for="PublisherName" type="text" class="form-control" />
+                    <span asp-validation-for="PublisherName" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+               <button type="submit" class="btn btn-success mt-3">Update</button>
+               <a asp-area=""
+               class="btn btn-primary mt-3"
+                  asp-controller="Publisher"
+                  asp-action="Index">List
+              </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

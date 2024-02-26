@@ -1,0 +1,54 @@
+﻿@model AddBookViewModel
+
+<div class="container ">
+    <div class="row">
+        <div class="col-md-6">
+
+            <h3 class="display-6 mt-3">Add Book</h3>
+            <form
+                asp-area=""
+                asp-controller="Book"
+                asp-action="Create"
+                method="Post"
+            >
+            <div class="form-group mb-3">
+                      <label asp-for="Title"></label>
+                    <input asp-for="Title" type="text" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Isbn"></label>
+                    <input asp-for="Isbn" type="text" class="form-control" />
+                    <span asp-validation-for="Isbn" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="TotalPages"></label>
+                    <input asp-for="TotalPages" type="number" class="form-control" />
+                    <span asp-validation-for="TotalPages" class="text-danger"></span>
+                </div>
+                <label asp-for="AuthorList"></label>
+                <select  asp-items="Model.AuthorList" class="form-control mb-3">
+                    <option>Seçiniz</option>
+                </select>
+
+                <label asp-for="PublisherList"></label>
+                <select  asp-items="Model.PublisherList" class="form-control mb-3 ">
+                    <option>Seçiniz</option>
+                </select>
+
+                <label asp-for="GenreList"></label>
+                <select  asp-items="Model.GenreList" class="form-control mb-3">
+                    <option>Seçiniz</option>
+                </select>
+                <div class="form-group">
+               <button type="submit" class="btn btn-success mt-3">Save</button>
+               <a asp-area=""
+               class="btn btn-primary mt-3"
+                  asp-controller="Book"
+                  asp-action="Index">List
+              </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
