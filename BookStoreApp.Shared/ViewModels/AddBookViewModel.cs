@@ -12,28 +12,29 @@ namespace BookStoreApp.Shared.ViewModels
     public class AddBookViewModel
     {
 
+
         [DisplayName("Title")]
-        [Required(ErrorMessage ="")]
+        [Required(ErrorMessage = "Please do not left blank this field.")]
         public string Title { get; set; }
 
-        [DisplayName("Title")]
-        [Required(ErrorMessage = "")]
+        [DisplayName("Isbn")]
+        [Required(ErrorMessage = "Please do not left blank this field.")]
         public string Isbn { get; set; }
 
-        [DisplayName("Title")]
-        [Required(ErrorMessage = "")]
+        [DisplayName("Total Page")]
+        [Required(ErrorMessage = "Please do not left blank this field.")]
         public int TotalPages { get; set; }
 
-        [DisplayName("Title")]
-        [Required(ErrorMessage = "")]
+        [DisplayName("Authors")]
+        [Required(ErrorMessage = "Please do not left blank this field.")]
         public List<SelectListItem> AuthorList { get; set; }
 
-        [DisplayName("Title")]
-        [Required(ErrorMessage = "")]
+        [DisplayName("Genres")]
+        [Required(ErrorMessage = "Please do not left blank this field.")]
         public List<SelectListItem> GenreList { get; set; }
 
-        [DisplayName("Title")]
-        [Required(ErrorMessage = "")]
+        [DisplayName("Publishers")]
+        [Required(ErrorMessage = "Please do not left blank this field.")]
         public List<SelectListItem> PublisherList { get; set; }
 
     }

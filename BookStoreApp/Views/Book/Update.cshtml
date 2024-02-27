@@ -1,71 +1,53 @@
 ﻿@model EditBookViewModel
 
-<div class="container w-100 ">
+<div class="container ">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
 
-
-            <div class="row">
-                <div class="col-md-6">
-                    <h3 class="display-6 mt-3">Book List</h3>
+            <h3 class="display-6 mt-3">Update Book</h3>
+            <form asp-area=""
+                  asp-controller="Book"
+                  asp-action="Update"
+                  method="Post">
+                <div class="form-group mb-3">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" type="text" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
-
-            </div>
-
-            <div class="row w-100">
-                <div class="col-md-12">
-                    <table class="table table-striped table-bordered mt-5">
-                        <thead>
-                            <tr>
-                                <td>Title</td>
-                                <td>Genre</td>
-                                <td>Isbn</td>
-                                <td>Total Pages</td>
-                                <td>Author</td>
-                                <td>Publisher</td>
-                                <td>Action</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                                <tr>
-                                    <td>@Model.Title</td>
-                                <td>@Model.Name</td>
-                                <td>@Model.Isbn</td>
-                                <td>@Model.TotalPages</td>
-                                <td>@Model.Author.AuthorName</td>
-                                <td>@Model.Publisher.PublisherName</td>
-                                    <td>
-                                        <a asp-area=""
-                                           asp-controller="Book"
-                                           asp-action="Update"
-                                           class="btn btn-success"
-                                       asp-route-id="@Model.Id">
-                                            <i class="fa-regular fa-pen-to-square"></i>
-                                        </a>
-                                        <a asp-area=""
-                                           asp-controller="Book"
-                                           asp-action="HardDelete"
-                                           class="btn btn-danger"
-                                       asp-route-id="@Model.Id">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                    <div class="col-md-12">
-                        <a asp-area=""
-                           class="btn btn-primary mt-4 float-end "
-                           asp-controller="Book"
-                           asp-action="Create">
-                            Add more
-                        </a>
-                    </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Isbn"></label>
+                    <input asp-for="Isbn" type="text" class="form-control" />
+                    <span asp-validation-for="Isbn" class="text-danger"></span>
                 </div>
-            </div>
+                <div class="form-group mb-3">
+                    <label asp-for="TotalPages"></label>
+                    <input asp-for="TotalPages" type="number" class="form-control" />
+                    <span asp-validation-for="TotalPages" class="text-danger"></span>
+                </div>
+                <label asp-for="AuthorList"></label>
+                <select asp-items="Model.AuthorList" class="form-control mb-3">
+                    <option>Seçiniz</option>
+                </select>
 
+                <label asp-for="PublisherList"></label>
+                <select asp-items="Model.PublisherList" class="form-control mb-3 ">
+                    <option>Seçiniz</option>
+                </select>
+
+                <label asp-for="GenreList"></label>
+                <select asp-items="Model.GenreList" class="form-control mb-3">
+                    <option>Seçiniz</option>
+                </select>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success mt-3">Update</button>
+                    <a asp-area=""
+                       class="btn btn-primary mt-3"
+                       asp-controller="Book"
+                       asp-action="Index">
+                        List
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
 </div>

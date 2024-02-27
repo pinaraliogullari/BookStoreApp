@@ -80,20 +80,55 @@ namespace BookStoreApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            var updatedGenre = await _authorService.GetByIdAsync(id);
-            var updatedAuthorViewModel = updatedGenre.Adapt<EditAuthorViewModel>();
-            return View(updatedAuthorViewModel);
+            var updatedGenre = await _bookService.GetByIdAsync(id);
+        
+            var authors = await _authorService.GetAllAsync();
+
+            List<SelectListItem> authorListItem = authors
+               .Select(a => new SelectListItem
+               {
+                   Text = a.AuthorName,
+                   Value = a.Id.ToString()
+               }).ToList();
+            var publishers = await _publisherService.GetAllAsync();
+            List<SelectListItem> publisherListItem = publishers
+                .Select(p => new SelectListItem
+                {
+                    Text = p.PublisherName,
+                    Value = p.Id.ToString()
+                }).ToList();
+            var genres = await _genreService.GetAllAsync();
+            List<SelectListItem> genreListItem = genres
+              .Select(g => new SelectListItem
+              {
+                  Text = g.Name,
+                  Value = g.Id.ToString()
+              }).ToList();
+            EditBookViewModel model = new EditBookViewModel
+            {
+                AuthorList = authorListItem,
+                PublisherList = publisherListItem,
+                GenreList = genreListItem,
+                Title=updatedGenre.Title,
+                Isbn=updatedGenre.Isbn,
+                TotalPages=updatedGenre.TotalPages,
+                Id=updatedGenre.Id,
+
+            };
+            return View(model);
+          
+            //return View(updatedAuthorViewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(EditAuthorViewModel editAuthorViewModel)
+        public async Task<IActionResult> Update(EditBookViewModel editBookViewModel)
         {
             if (!ModelState.IsValid)
             {
-                return View(editAuthorViewModel);
+                return View(editBookViewModel);
             }
 
-            await _authorService.UpdateAsync(editAuthorViewModel);
+            await _bookService.UpdateAsync(editBookViewModel);
             return RedirectToAction("Index");
         }
 
@@ -101,14 +136,14 @@ namespace BookStoreApp.Controllers
         public async Task<IActionResult> SoftDelete(int id)
         {
 
-            await _authorService.SoftDeleteAsync(id);
+            await _bookService.SoftDeleteAsync(id);
             return RedirectToAction("Index");
         }
         [HttpGet]
         public async Task<IActionResult> HardDelete(int id)
         {
 
-            await _authorService.HardDeleteAsync(id);
+            await _bookService.HardDeleteAsync(id);
             return RedirectToAction("Index");
         }
     }
